@@ -3,32 +3,57 @@
 ////////////////////////////////////////////////////////////////////////
 
 class Aluno {
-  
+  Nome
+  Idade
+  Nota
+  constructor(nome, idade, nota) {
+    this.Nome = nome
+    this.Idade = idade
+    this.Nota = nota
+  }
+
+
 }
 
 // Array
-
+let arrayAlunos = []
 
 //funções projeto
 
-function CadastrarAluno() {
-  
+function CadastrarAluno(nome, idade, nota) {
+
+  let estudante = new Aluno(nome, idade, nota)
+  if (arrayAlunos.indexOf(estudante) == -1) {
+    arrayAlunos.push(estudante)
+  }
+
+  return estudante
 }
 
-function OrdenarPorNota() {
- 
+function OrdenarPorNota(array) {
+  array.sort((a, b) => a.Nota - b.Nota)
+  return array
 }
 
-function OrdenarPorIdade() {
-
+function OrdenarPorIdade(array) {
+  array.sort((a, b) => a.Idade - b.Idade)
+  return array
 }
 
-function OrdenarPorNome() {
 
+function OrdenarPorNome(array) {
+  array.sort((a, b) => a.Nome - b.Nome);
+  return array
 }
 
-function CalcularMedia(){
-
+function CalcularMedia(array) {
+  let somaNotas = 0;
+  for (let i = 0; i < array.length; i++) {
+    somaNotas += parseInt(array[i].Nota)
+  }
+  let media = somaNotas / array.length
+  console.log(somaNotas)
+  return media
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -101,7 +126,7 @@ const saveAluno = (nome, idade, nota, done = 0, save = 1) => {
   // Utilizando dados da localStorage
 
   alunoList.appendChild(aluno);
-  
+
 
   const media = document.querySelector("#media");
   media.textContent = CalcularMedia(arrayAlunos).toFixed(2)
